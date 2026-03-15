@@ -64,8 +64,8 @@ ROCMSMI_IOLINK_TYPE_NUMIOLINKTYPES = 3
 
 ## Memory Types ##
 RSMI_MEM_TYPE_VRAM = 0
-RSMI_MEM_TYPE_GTT = 1
-RSMI_MEM_TYPE_VIS_VRAM = 2
+RSMI_MEM_TYPE_VIS_VRAM = 1
+RSMI_MEM_TYPE_GTT = 2
 
 ## Error Codes ##
 ROCMSMI_ERROR_UNINITIALIZED = -99997
@@ -231,7 +231,7 @@ def rsmi_dev_busy_percent_get(device=0):
 
 def rsmi_dev_memory_usage_get(device=0, memory_type=None):
     if memory_type is None:
-        memory_type = rsmi_memory_type_t.RSMI_MEM_TYPE_VRAM
+        memory_type = RSMI_MEM_TYPE_VRAM
     c_used = c_uint64()
     fn = _rocmsmiGetFunctionPointer("rsmi_dev_memory_usage_get")
     ret = fn(device, memory_type, byref(c_used))
@@ -241,7 +241,7 @@ def rsmi_dev_memory_usage_get(device=0, memory_type=None):
 
 def rsmi_dev_memory_total_get(device=0, memory_type=None):
     if memory_type is None:
-        memory_type = rsmi_memory_type_t.RSMI_MEM_TYPE_VRAM
+        memory_type = RSMI_MEM_TYPE_VRAM
     c_total = c_uint64()
     fn = _rocmsmiGetFunctionPointer("rsmi_dev_memory_total_get")
     ret = fn(device, memory_type, byref(c_total))
